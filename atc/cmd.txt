@@ -1,0 +1,76 @@
+venv\Scripts\activate : File C:\Users\Admin\Desktop\py\venv\Scripts\activate.ps1 cannot be loaded because running
+scripts is disabled on this system. For more information, see about_Execution_Policies at
+https:/go.microsoft.com/fwlink/?LinkID=135170.
+At line:1 char:1
++ venv\Scripts\activate
++ ~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : SecurityError: (:) [], PSSecurityException
+    + FullyQualifiedErrorId : UnauthorizedAccess
+
+
+It seems like you are trying to activate a virtual environment in Python. The error message you received indicates that running scripts is disabled on your system. You can try running the following command in PowerShell to allow the execution of PowerShell scripts:
+
+
+
+>>>"" Set-ExecutionPolicy -Scope CurrentUser -ExecutionPolicy Unrestricted ""
+
+
+
+
+
+
+
+
+
+(venv) PS C:\Users\Admin\Desktop\py> pip list
+Package    Version
+---------- -------
+pip        23.2
+setuptools 68.0.0
+wheel      0.40.0
+(venv) PS C:\Users\Admin\Desktop\py> pip install django
+Collecting django
+  Obtaining dependency information for django from https://files.pythonhosted.org/packages/d4/83/227ebf197e413f3599cea96dddc7d6b8ff220310cc5b40dd0f1a15e5a9d1/Django-4.2.3-py3-none-any.whl.metadata
+  Downloading Django-4.2.3-py3-none-any.whl.metadata (4.1 kB)
+Collecting asgiref<4,>=3.6.0 (from django)
+  Obtaining dependency information for asgiref<4,>=3.6.0 from https://files.pythonhosted.org/packages/9b/80/b9051a4a07ad231558fcd8ffc89232711b4e618c15cb7a392a17384bbeef/asgiref-3.7.2-py3-none-any.whl.metadata
+  Downloading asgiref-3.7.2-py3-none-any.whl.metadata (9.2 kB)
+Collecting sqlparse>=0.3.1 (from django)
+  Downloading sqlparse-0.4.4-py3-none-any.whl (41 kB)
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 41.2/41.2 kB 179.9 kB/s eta 0:00:00
+Collecting tzdata (from django)
+  Downloading tzdata-2023.3-py2.py3-none-any.whl (341 kB)
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 341.8/341.8 kB 732.0 kB/s eta 0:00:00
+Downloading Django-4.2.3-py3-none-any.whl (8.0 MB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 8.0/8.0 MB 3.2 MB/s eta 0:00:00
+Downloading asgiref-3.7.2-py3-none-any.whl (24 kB)
+Installing collected packages: tzdata, sqlparse, asgiref, django
+Successfully installed asgiref-3.7.2 django-4.2.3 sqlparse-0.4.4 tzdata-2023.3
+(venv) PS C:\Users\Admin\Desktop\py> pip list
+Package    Version
+---------- -------
+asgiref    3.7.2
+Django     4.2.3
+pip        23.2
+setuptools 68.0.0
+sqlparse   0.4.4
+tzdata     2023.3
+wheel      0.40.0
+(venv) PS C:\Users\Admin\Desktop\py> django-admin startproject atc
+(venv) PS C:\Users\Admin\Desktop\py> cd atc
+(venv) PS C:\Users\Admin\Desktop\py\atc> python manage.py runserver
+Watching for file changes with StatReloader
+Performing system checks...
+
+System check identified no issues (0 silenced).
+
+You have 18 unapplied migration(s). Your project may not work properly until you apply the migrations for app(s): admin, auth, contenttypes, sessions.
+Run 'python manage.py migrate' to apply them.
+July 21, 2023 - 19:43:22
+Django version 4.2.3, using settings 'atc.settings'
+Starting development server at http://127.0.0.1:8000/
+Quit the server with CTRL-BREAK.
+
+[21/Jul/2023 19:43:42] "GET / HTTP/1.1" 200 10664
+Not Found: /favicon.ico
+[21/Jul/2023 19:43:42] "GET /favicon.ico HTTP/1.1" 404 2107
