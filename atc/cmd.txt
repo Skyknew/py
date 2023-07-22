@@ -74,3 +74,30 @@ Quit the server with CTRL-BREAK.
 [21/Jul/2023 19:43:42] "GET / HTTP/1.1" 200 10664
 Not Found: /favicon.ico
 [21/Jul/2023 19:43:42] "GET /favicon.ico HTTP/1.1" 404 2107
+
+
+ >>>>> TO RUN AGAIN <<<<<<
+
+ 
+PS C:\Users\Admin\Desktop\py> venv\Scripts\activate
+(venv) PS C:\Users\Admin\Desktop\py> django-admin startproject atc
+CommandError: 'C:\Users\Admin\Desktop\py\atc' already exists
+(venv) PS C:\Users\Admin\Desktop\py> cd atc
+(venv) PS C:\Users\Admin\Desktop\py\atc>  python manage.py runserver
+Watching for file changes with StatReloader
+Performing system checks...
+
+System check identified no issues (0 silenced).
+
+You have 18 unapplied migration(s). Your project may not work properly until you apply the migrations for app(s): admin, auth, contenttypes, sessions.
+Run 'python manage.py migrate' to apply them.
+July 22, 2023 - 22:22:02
+Django version 4.2.3, using settings 'atc.settings'
+Starting development server at http://127.0.0.1:8000/
+Quit the server with CTRL-BREAK.
+
+[22/Jul/2023 22:22:09] "GET / HTTP/1.1" 200 10664
+Not Found: /favicon.ico
+[22/Jul/2023 22:22:10] "GET /favicon.ico HTTP/1.1" 404 2107
+[22/Jul/2023 22:22:16] "GET / HTTP/1.1" 200 10664
+[22/Jul/2023 22:22:18] "GET / HTTP/1.1" 200 10664
