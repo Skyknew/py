@@ -4,6 +4,8 @@ from django.shortcuts import render, redirect
 
 from . forms import CreateUSerForm
 
+from . models import Profile
+
 def index(request):
 
     return render(request, 'test1/index.html')
@@ -20,7 +22,13 @@ def register(request):
 
         if form.is_valid():
 
+            current_user = form.save(commit=False)
+
+
             form.save()
+
+            profile = Profile.objects.create(user=current_user)
+
 
             return redirect("my-login")
         
