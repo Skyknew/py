@@ -1,6 +1,8 @@
 
 {% load static %}
 
+{% load crispy_forms_tags %}
+
 <html>
 
     <head>
@@ -16,17 +18,44 @@
     </head>
 
 
+    <div class="container bg-white shadow-md p-5 form-layout" >
+
+
     <h1> Register </h1>
+
+    <br>
 
     <form method="POST" autocomplete="off">
 
         { % csrf_token % }
 
-        {{form.as_p}}
+        {{form.username | as_crispy_field }}
 
-        <input type="submit" value="Submit" />
+        <br>
+
+
+        {{form.email | as_crispy_field }}
+
+        <br>
+
+
+        {{form.password1 | as_crispy_field }}
+
+        <br>
+
+
+        {{form.password2 | as_crispy_field }}
+
+        <br>
+
+        <input class="btn btn-primary" type="submit" value="Submit" />
 
     </form>
+
+    </div>
+
+
+    <br>
 
     
     <script src="{% static 'js/app.js' %}"> </script>
