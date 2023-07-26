@@ -15,5 +15,6 @@ urlpatterns = [
 
     path('profile-management', views.profile_management, name="profile_management"),
 
+    path('user-logout', views.user_logout, name="user-logout"),
 
 ]
