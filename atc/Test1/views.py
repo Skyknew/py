@@ -2,7 +2,7 @@ from django.shortcuts import render, redirect
 
 # Create your views here.
 
-from . forms import CreateUSerForm, LoginForm
+from . forms import CreateUSerForm, LoginForm, UpdateUserForm
 
 from . models import Profile
 
@@ -93,4 +93,19 @@ def dashboard(request):
 @login_required(login_url='my-login')
 def profile_management(request):
 
-    return render(request, 'test1/profile-management.html')
+    user_form = UpdateUserForm(instance=request.user)
+
+    if request.method == 'POST':
+
+        user_form = UpdateUserForm(request.POST, instance=request.user)
+
+        if user_form.is_valid():
+
+            user_form.save()
+
+            return redirect("dashboard")
+        
+    
+    context = {'user_form': user_form}
+
+    return render(request, 'test1/profile-management.html', context=context)
