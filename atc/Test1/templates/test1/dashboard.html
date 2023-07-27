@@ -25,12 +25,19 @@
 
         <hr>
 
+        Welcome, {{user}}!
+
+        <br>
+        <br>
+
+        <img style="width: 100px;" src="{{profilePic.profile_pic.url}}" /> 
+
+        <br>
         <br>
 
         <a href="{% url 'user-logout' %}"> Logout </a>
 
-        <hr>
-
+        <br>
         <br>
 
         <a href="{% url 'profile_management' %}"> Profile management </a>
