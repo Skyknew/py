@@ -16,9 +16,11 @@
 
     </head>
 
-    <br>
-    
+    {%include 'test1/account-navbar.html'%}
 
+    <br>
+
+    
     <div class="container bg-white shadow-md p-5 form-layout ">
         
         <h1> Dashboard </h1>
@@ -35,14 +37,7 @@
         <br>
         <br>
 
-        <a href="{% url 'user-logout' %}"> Logout </a>
-
-        <br>
-        <br>
-
-        <a href="{% url 'profile_management' %}"> Profile management </a>
-
-
+        
     </div>
 
 
