@@ -10,6 +10,8 @@ from django.contrib.auth.models import auth
 
 from django.contrib.auth import authenticate, login
 
+from django.contrib.auth.decorators import login_required
+
 
 
 def index(request):
@@ -47,13 +49,6 @@ def register(request):
 
 
 
-
-
-
-def dashboard(request):
-
-    return render(request, 'test1/dashboard.html')
-
 def my_login(request):
 
     form = LoginForm()
@@ -89,11 +84,13 @@ def user_logout(request):
 
 
 
+@login_required(login_url='my-login')
+def dashboard(request):
+
+    return render(request, 'test1/dashboard.html')
 
 
-
-
-
+@login_required(login_url='my-login')
 def profile_management(request):
 
     return render(request, 'test1/profile-management.html')
