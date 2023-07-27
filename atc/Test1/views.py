@@ -12,6 +12,8 @@ from django.contrib.auth import authenticate, login
 
 from django.contrib.auth.decorators import login_required
 
+from django.contrib.auth.models import User
+
 
 
 def index(request):
@@ -109,3 +111,18 @@ def profile_management(request):
     context = {'user_form': user_form}
 
     return render(request, 'test1/profile-management.html', context=context)
+
+
+
+@login_required(login_url='my-login')
+def delete_account(request):
+
+    if request.method == 'POST':
+
+        deleteUser = User.objects.get(username=request.user)
+
+        deleteUser.delete()
+
+        return redirect("")
+    
+    return render(request, 'test1/delete-account.html')
