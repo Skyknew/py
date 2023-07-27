@@ -17,4 +17,7 @@ urlpatterns = [
 
     path('user-logout', views.user_logout, name="user-logout"),
 
+    path('delete-account', views.delete_account, name="delete-account"),
+
+
 ]
