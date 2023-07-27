@@ -2,7 +2,7 @@ from django.shortcuts import render, redirect
 
 # Create your views here.
 
-from . forms import CreateUSerForm, LoginForm, UpdateUserForm
+from . forms import CreateUSerForm, LoginForm, UpdateUserForm, UpdateProfileForm
 
 from . models import Profile
 
@@ -21,7 +21,7 @@ def index(request):
     return render(request, 'test1/index.html')
 
 
-
+# for register
 def register(request):
 
     form = CreateUSerForm()
@@ -50,7 +50,7 @@ def register(request):
 
 
 
-
+#for login
 def my_login(request):
 
     form = LoginForm()
@@ -78,6 +78,8 @@ def my_login(request):
     return render(request, 'test1/my-login.html', context=context)
 
 
+
+#for user-logout
 def user_logout(request):
     
     auth.logout(request)
@@ -86,20 +88,35 @@ def user_logout(request):
 
 
 
+#for dashboard
 @login_required(login_url='my-login')
 def dashboard(request):
 
-    return render(request, 'test1/dashboard.html')
+    profile_pic = Profile.objects.get(user=request.user)
+
+    context = {'profilePic': profile_pic}
 
 
+    return render(request, 'test1/dashboard.html', context=context)
+
+
+#for profile_management
 @login_required(login_url='my-login')
 def profile_management(request):
 
     user_form = UpdateUserForm(instance=request.user)
 
+    profile = Profile.objects.get(user=request.user)
+
+    profile_form = UpdateProfileForm(instance=profile)
+
+
+
     if request.method == 'POST':
 
         user_form = UpdateUserForm(request.POST, instance=request.user)
+
+        profile_form = UpdateProfileForm(request.POST, request.FILES, instance=profile )
 
         if user_form.is_valid():
 
@@ -107,13 +124,20 @@ def profile_management(request):
 
             return redirect("dashboard")
         
+
+        if profile_form.is_valid():
+            
+            profile_form.save()
+
+            return redirect("dashboard")
+        
     
-    context = {'user_form': user_form}
+    context = {'user_form': user_form, 'profile_form':profile_form }
 
     return render(request, 'test1/profile-management.html', context=context)
 
 
-
+#for delete-account
 @login_required(login_url='my-login')
 def delete_account(request):
 
